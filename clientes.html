@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Luis Hernández Morales">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prueba PHP</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/datatables.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+</head>
+<body>
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+                <a class="navbar-brand" href="index.php">Gestion de clientes</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="productos.html">Productos </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="clientes.html">Clientes </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+
+
+              
+                    
+                      <div class="row  py-3 ">
+                          
+  
+    <div class="container">
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addClient">
+              Añadir cliente</button>
+    </div>  
+
+      <!-- Modal Insertar -->
+      <div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="addClienteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addClientLabel">Nuevo cliente</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+              <form>
+              <div class="form-group row">
+                <label for="addNombre" class="col-sm-2 col-form-label">Nombre </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="addNombre" placeholder="Nombre">
+                </div>
+              </div>
+              <div class="form-group row">
+                  <label for="addApellidos" class="col-sm-2 col-form-label">Apellidos </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="addApellidos" placeholder="Apellidos"></textarea>
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="addDni" class="col-sm-2 col-form-label">DNI </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="addDni" placeholder="DNI"></textarea>
+                </div>
+            </div>
+  
+            <div class="form-group row">
+              <label for="addDireccion" class="col-sm-2 col-form-label">Dirección </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="addDireccion" placeholder="Dirección"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="addTelefono" class="col-sm-2 col-form-label">Teléfono </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="addTelefono" placeholder="Teléfono"></textarea>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="addEmail" class="col-sm-2 col-form-label">Email </label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="addEmail" placeholder="Email"></textarea>
+            </div>
+        </div>
+            </form>
+  
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="addButton"  name="smt" value="Añadir cliente" class="btn btn-dark"  />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Fin del modal-->
+                
+    <!-- Modal Editar -->
+    <div class="modal fade" id="updateClients" tabindex="-1" role="dialog" aria-labelledby="updateClients" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateClients">Actualizar cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <form>
+                          
+              <div class="form-group row">
+                  <label for="actId" class="col-sm-2 col-form-label">ID </label>
+                  <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="actId">
+                  </div>
+                </div>
+        
+        
+            <div class="form-group row">
+              <label for="actNombre" class="col-sm-2 col-form-label">Nombre </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="actNombre" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="actApellidos" class="col-sm-2 col-form-label">Apellidos </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="actApellidos" placeholder="Apellidos"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="actDni" class="col-sm-2 col-form-label">DNI </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="actDni" placeholder="DNI"></textarea>
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="actDireccion" class="col-sm-2 col-form-label">Dirección </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="actDireccion" placeholder="Dirección"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="actTelefono" class="col-sm-2 col-form-label">Teléfono </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="actTelefono" placeholder="Teléfono"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="actEmail" class="col-sm-2 col-form-label">Email </label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="actEmail" placeholder="Email"></textarea>
+          </div>
+      </div>
+          </form>
+
+          </div>
+          <div class="modal-footer">
+              <input type="button" id="updateButton"  name="smt" value="Actualizar cliente" class="btn btn-dark"  />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Fin del modal-->
+                
+  
+
+    <!-- Modal productos -->
+    <div class="modal fade" id="admProductos" tabindex="-1" role="dialog" aria-labelledby="admProductos" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="admProductos">Administrar productos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          
+           <p class="text-center"> <strong>
+              Añadir productos al cliente
+            </strong></p>
+            <div class="div-table">
+              <table class="table table-sm  table-striped table-product-client">
+                  <thead class="thead-dark">
+                      <th class="col-xs-2" scope="col">Codigo</th>
+                        <th class="col-xs-8" scope="col">Nombre</th>
+                        <th class="col-xs-2" scope="col">Acciones</th>
+                    </thead>
+                  <tbody id="addProducts"> 
+                      
+                  </tbody>
+              </table>
+
+            </div>
+            
+
+            <p class="text-center"> <strong>
+              Administrar productos del cliente
+            </strong></p>
+            <div class="div-table">
+                <table class="table  table-sm  table-striped  table-product-client ">
+                    <thead class="thead-dark">
+                       <th class="col-xs-2" scope="col">Codigo</th>
+                        <th class="col-xs-8" scope="col">Nombre</th>
+                        <th class="col-xs-2" scope="col">Acciones</th>
+                      </thead>
+                      <tbody id="clientsProducts">
+
+                      </tbody>
+                </table>
+              </div>
+           
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Fin del modal-->
+
+
+        <div class="row">
+          <div class="container">
+              <table id="dtproductos" class="table table-striped table-bordered table-sm display" cellspacing="0" width="100%">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th class="th-sm">ID
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm">Nombre
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm">Apellidos
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm">DNI
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm large-devices">Dirección
+                          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm large-devices">Teléfono
+                          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm">Email
+                          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                      <th class="th-sm">Acciones
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                      </th>
+                    </tr>
+                  </thead>
+                <tbody>
+                </tbody>
+                      
+             </table>
+        </div>
+      </div>  
+
+                  
+    <script src="js/clientes.js"></script>
+</body>
+
+
+</html>
