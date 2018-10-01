@@ -2,8 +2,8 @@
 --
 -- Base de datos: `indra_prueba`
 --
-CREATE DATABASE IF NOT EXISTS `indra_prueba2`;
-USE `indra_prueba2`;
+CREATE DATABASE IF NOT EXISTS `indra_prueba`;
+USE `indra_prueba`;
 
 -- --------------------------------------------------------
 
